@@ -47,30 +47,29 @@ void setup()
 }
 
 void loop()
-
-  int Distances[3];
-  int largestDistance;
-  int angle = 0;
+{
+  int iterator = 3;
+  int Distances[iterator];
+  int Angles[iterator];
+  int largestDistance = 0;
   for(int i = 0; i < 255; i += 64)
   {
     myservo.write(i);
     delay(100);
     Distances[i] = GetObjectDistance();
-    
-    if(distanceInch > largestDistance)
-    {
-	    largestDistance = distanceInch;
-	    angle = i;
-    }
-    //if(distanceInch >= 8)
-    //{
-    //  move_straight(250, forward);    
-    //} else
-    //{
-    //  stop_wheels();
-    //}
+    Angles[i] = i;
+   }
 
-    }
+   for (int i=0; iterator; ++iterator)
+   {
+      if (Distances[i] > Distances[largestDistance])
+      {
+        largestDistance = i;   
+      }
+   }
+
+   
+    
     //Serial.println(distanceInch);
     
 
