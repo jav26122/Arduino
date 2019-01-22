@@ -12,7 +12,7 @@ const int trigPin = 10;
 const int echoPin = 12;
 long duration;
 int distanceInch;
-int i;
+
 
 int enA = 6;  // LEFT motor 
 int in1 = 0; 
@@ -52,15 +52,17 @@ void loop()
   int Distances[iterator];
   int Angles[iterator];
   int largestDistance = 0;
-  for(int i = 0; i < 255; i += 64)
+  int counter=0;
+  for(int i = 0; i < 255; i += ((255/iterator) - 10))
   {
+    ++counter;
     myservo.write(i);
     delay(100);
-    Distances[i] = GetObjectDistance();
+    Distances[counter] = GetObjectDistance();
     Angles[i] = i;
    }
 
-   for (int i=0; iterator; ++iterator)
+   for (int i=0; i < iterator; ++i)
    {
       if (Distances[i] > Distances[largestDistance])
       {
