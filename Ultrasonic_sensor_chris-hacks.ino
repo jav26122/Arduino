@@ -12,7 +12,7 @@ const int trigPin = 10;
 const int echoPin = 12;
 long duration;
 int distanceInch;
-
+int i;
 
 int enA = 6;  // LEFT motor 
 int in1 = 0; 
@@ -30,7 +30,7 @@ void setup()
   pinMode(13, OUTPUT);
   pinMode(trigPin, OUTPUT);
   pinMode(echoPin, INPUT);
-  //Serial.begin(9600);  // chris print statements
+  Serial.begin(9600);  // chris print statements
 
 
   pinMode(enA, OUTPUT);
@@ -41,39 +41,38 @@ void setup()
   pinMode(enB, OUTPUT);
 
 
- forward = 1; //1=wheel forward, 0=wheel reverse 
 
  myservo.attach(9);  // attaches the servo on pin 9 to the servo object
 }
 
 void loop()
 {
-  int iterator = 3;
-  int Distances[iterator];
-  int Angles[iterator];
-  int largestDistance = 0;
-  int counter=0;
-  for(int i = 0; i < 255; i += ((255/iterator) - 10))
-  {
-    ++counter;
-    myservo.write(i);
-    delay(100);
-    Distances[counter] = GetObjectDistance();
-    Angles[i] = i;
-   }
-
-   for (int i=0; i < iterator; ++i)
-   {
-      if (Distances[i] > Distances[largestDistance])
-      {
-        largestDistance = i;   
-      }
-   }
-
-   
-    
-    //Serial.println(distanceInch);
-    
+//  int counter = 0;
+//  int iterator = 5;
+//  int Distances[iterator];
+//  int Angles[iterator];
+//  int largestDistance = 0;
+//  for(int i = 0; i < 255; i += (255 / iterator))
+//  {
+//    myservo.write(i);
+//    delay(500);
+//    Distances[counter] = GetObjectDistance();
+//    Angles[counter] = i;
+//    ++counter;
+//   }
+//
+//   for (int i=0; i < iterator; ++i)
+//   {
+//      if (Distances[i] > Distances[largestDistance])
+//      {
+//        largestDistance = i;   
+//      }
+//      
+//   }
+//
+//  Serial.println(largestDistance);
+//  Serial.println(Distances[largestDistance]);
+right_only(200, 1);
 
 } // End of Loop
 
@@ -154,7 +153,7 @@ void stop_wheels()
   
 }
 
-void right_only (int wheel_speed, int forward)
+void right_only (int wheel_speed, bool forward)
 {
 
   digitalWrite(in3, LOW);
@@ -163,7 +162,7 @@ void right_only (int wheel_speed, int forward)
 
 
 // First - set H Bridge control pins for forward or reverse
-  if(forward == 1)
+  if(forward == true)
   {
     digitalWrite(in1, LOW);     // H-bridge drive motor forward
     digitalWrite(in2, HIGH);
@@ -176,10 +175,13 @@ void right_only (int wheel_speed, int forward)
 
   // Second - set speed of motor, and enable H-Bridge to drive motor
   analogWrite(enA, wheel_speed);
+  delay(200);
+  stop_wheels();
+  
 
 }
 
-void left_only(int wheel_speed, int forward)
+void left_only(int wheel_speed, bool forward)
 {
 
   
@@ -188,7 +190,7 @@ void left_only(int wheel_speed, int forward)
   digitalWrite(enA, LOW);
   
 // First - set H Bridge control pins for forward or reverse
-  if(forward == 1)
+  if(forward == true)
   {
     digitalWrite(in3, LOW);     // H-bridge drive motor forward
     digitalWrite(in4, HIGH);
