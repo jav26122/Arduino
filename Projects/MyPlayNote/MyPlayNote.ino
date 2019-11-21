@@ -33,6 +33,26 @@ void setup() {
   int As = 11;
   int B = 12;
 
+void CMajor()
+{
+  myPlayNote(C, 500, 6);
+  myPlayNote(D, 500, 6);
+  myPlayNote(E, 500, 6);
+  myPlayNote(F, 500, 6);
+  myPlayNote(G, 500, 6);
+  myPlayNote(A, 500, 6);
+  myPlayNote(B, 500, 6);
+  myPlayNote(C, 1000, 6);
+  myPlayNote(B, 500, 6);
+  myPlayNote(A, 500, 6);
+  myPlayNote(G, 500, 6);
+  myPlayNote(F, 500, 6);
+  myPlayNote(E, 500, 6);
+  myPlayNote(D, 500, 6);
+  myPlayNote(C, 1000, 6);
+
+}
+
 void loop() {
   // put your main code here, to run repeatedly:
   myPlayNote(C, 500, 3);
