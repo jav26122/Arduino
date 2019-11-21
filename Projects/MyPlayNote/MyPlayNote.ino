@@ -33,23 +33,23 @@ void setup() {
   int As = 11;
   int B = 12;
 
-void CMajor()
+void CMajor(int vol)
 {
-  myPlayNote(C, 500, 6);
-  myPlayNote(D, 500, 6);
-  myPlayNote(E, 500, 6);
-  myPlayNote(F, 500, 6);
-  myPlayNote(G, 500, 6);
-  myPlayNote(A, 500, 6);
-  myPlayNote(B, 500, 6);
-  myPlayNote(C, 1000, 6);
-  myPlayNote(B, 500, 6);
-  myPlayNote(A, 500, 6);
-  myPlayNote(G, 500, 6);
-  myPlayNote(F, 500, 6);
-  myPlayNote(E, 500, 6);
-  myPlayNote(D, 500, 6);
-  myPlayNote(C, 1000, 6);
+  myPlayNote(C, 500, vol);
+  myPlayNote(D, 500, vol);
+  myPlayNote(E, 500, vol);
+  myPlayNote(F, 500, vol);
+  myPlayNote(G, 500, vol);
+  myPlayNote(A, 500, vol);
+  myPlayNote(B, 500, vol);
+  myPlayNote(C, 1000, vol);
+  myPlayNote(B, 500, vol);
+  myPlayNote(A, 500, vol);
+  myPlayNote(G, 500, vol);
+  myPlayNote(F, 500, vol);
+  myPlayNote(E, 500, vol);
+  myPlayNote(D, 500, vol);
+  myPlayNote(C, 1000, vol);
 
 }
 
