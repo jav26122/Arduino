@@ -1,0 +1,6 @@
+{
+    "programmer": "AVR ISP",
+    "board": "pololu-a-star:avr:a-star32U4",
+    "port": "COM4",
+    "sketch": "Projects\\MyPlayNote\\MyPlayNote.ino"
+}
