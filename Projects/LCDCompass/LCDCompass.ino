@@ -110,8 +110,17 @@ void calGyro()
   gyroOffsetX /= 1024;
 }
 
+
+int count = 0;
+float LastX;
+float LastY;
+int currentX = 0;
+int currentY = 0;
+int difX;
+int difY;
 void loop()
 {
+  count++;
   if (buttonA.isPressed())
   {
     calGyro();
@@ -120,6 +129,8 @@ void loop()
   // Update the angle using the gyro as often as possible.
   updateAngleGyro();
 
+
+
   // Every 20 ms (50 Hz), correct the angle using the
   // accelerometer, print it, and set the motor speeds.
   static byte lastCorrectionTime = 0;
@@ -127,10 +138,71 @@ void loop()
   if ((byte)(m - lastCorrectionTime) >= 20)
   {
     lastCorrectionTime = m;
+
     correctAngleAccel();
-    printAngles();
+
+
   }
+
+    if (count > 250) // this controls the update rate of the 'old' value
+    {
+      LastX = anglex;
+      LastY = angley;
+      count = 0;
+    }
+    
+    //lcd.clear();
+    if (anglex > -80)
+    {
+      
+      if (currentX > 0)
+      {
+        currentX--;
+        delay(50);
+      }
+      lcd.clear();
+      
+      
+    }
+    else if (anglex < -100)
+    {
+      if (currentX < 7)
+      {
+          currentX++;
+          delay(50);
+      }
+      lcd.clear();
+      
+      
+    }
+    if (angley < -80)
+    {
+      if (currentY < 1)
+      {
+        currentY++;
+        delay(50);
+      }
+      lcd.clear();
+    }
+    else if(angley > -100)
+    {
+      if (currentY > 0)
+      {
+        currentY--;
+        delay(50);
+      }
+      lcd.clear();
+    }
+    lcd.gotoXY(currentX, currentY);
+    lcd.print("0");
+    //lcd.print(F("   "));
+    delay(10);
+
+
 }
+
+// down Y goes up, up y goes down
+// 
 
 
 void correctAngleAccel()
@@ -169,7 +241,7 @@ void printAngles()
 {
   lcd.gotoXY(0, 0);
   lcd.print(angley);
-  lcd.print(F("  "));
+  lcd.print("  ");
 
   lcd.gotoXY(0, 1);
   lcd.print(anglex);
