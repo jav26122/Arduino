@@ -1,6 +1,0 @@
-{
-    "programmer": "AVR ISP",
-    "board": "pololu-a-star:avr:a-star32U4",
-    "port": "COM9",
-    "sketch": "Projects\\LCDCompass\\LCDCompass.ino"
-}
